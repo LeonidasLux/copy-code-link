@@ -2,12 +2,31 @@
   "name": "copy-code-link",
   "displayName": "Copy Code Link",
   "description": "拷贝选中代码或光标行的相对/绝对路径与行号链接到剪贴板",
-  "version": "0.1.0",
-  "publisher": "local",
+  "version": "0.1.1",
+  "publisher": "YuanLonghui",
+  "license": "MIT",
+  "author": "YuanLonghui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeonidasLux/copy-code-link.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LeonidasLux/copy-code-link/issues"
+  },
+  "homepage": "https://github.com/LeonidasLux/copy-code-link#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": ["Other"],
+  "keywords": [
+    "copy",
+    "link",
+    "path",
+    "relative path",
+    "absolute path",
+    "line number",
+    "clipboard"
+  ],
   "activationEvents": [],
   "main": "./out/src/extension.js",
   "contributes": {

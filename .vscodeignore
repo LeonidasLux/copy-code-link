@@ -1,0 +1,17 @@
+# 开发、文档与测试（不随扩展分发）
+.gitignore
+.vscode/**
+docs/**
+src/**
+test/**
+out/test/**
+tsconfig.json
+package-lock.json
+
+# TypeScript 源码与 source map
+**/*.ts
+**/*.map
+
+# 本地打包产物
+*.vsix
+*.zip

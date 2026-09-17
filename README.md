@@ -43,6 +43,7 @@
 ### 方式一：源码调试（开发）
 
 ```bash
+git clone https://github.com/LeonidasLux/copy-code-link.git
 cd copy-code-link
 npm install
 npm run compile
@@ -54,6 +55,7 @@ VS Code 中打开该目录，按 `F5` 启动 Extension Development Host，在新
 
 ```bash
 npm install -g @vscode/vsce
+git clone https://github.com/LeonidasLux/copy-code-link.git
 cd copy-code-link
 npm run compile
 vsce package
@@ -98,3 +100,19 @@ test/codeLink.test.ts
 npm test        # 编译 + 纯函数单测（node --test）
 npm run compile # 仅编译
 ```
+
+## 发布到 VS Code 扩展市场（维护者）
+
+前置条件：已在 [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage) 创建 publisher（本扩展为 `YuanLonghui`），并生成了带 **Marketplace → Manage** 权限、组织选 **All accessible organizations** 的 Azure DevOps PAT。
+
+```bash
+npm run compile
+vsce verify-pat YuanLonghui -p "<PAT>"   # 先验证 PAT 与 publisher 是否配套
+vsce publish -p "<PAT>"                  # 发布；加 minor/major/patch 可自动升版本
+```
+
+> 提示：本机无 keyring 服务时 `vsce login` 会回退到明文文件存储且交互提示可能卡住，直接使用 `-p` 或 `VSCE_PAT` 环境变量更省事。
+
+## 许可证
+
+[MIT](LICENSE)
