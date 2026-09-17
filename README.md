@@ -1,30 +1,42 @@
 # Copy Code Link
 
-按快捷键将**选中代码片段**或**光标所在行**拷贝为代码链接：
+按快捷键将**选中代码片段**或**光标所在行**拷贝为代码链接，支持两种路径口径：
 
-```
-@src/views/saiwei-park/views/security-inspection/video-inspection-section.vue#L153-159
-```
+| 拷贝方式 | 快捷键 | 输出示例 |
+| --- | --- | --- |
+| 相对路径链接 | `Ctrl+Alt+C` | `src/views/security-inspection/video-inspection-section.vue#L153-159` |
+| 绝对路径链接 | `Ctrl+Alt+Shift+C` | `/home/user/proj/src/views/security-inspection/video-inspection-section.vue#L153-159` |
 
 - 多行选区 → `#L153-159`（区间）
 - 单行选区或仅光标 → `#L153`（单行）
-- 路径为当前工作区根目录相对路径（多根工作区自动取包含该文件的工作区）
+- 链接格式为 `路径#L行号`，**不带 `@` 前缀**
+- 相对路径为当前工作区根目录相对路径（多根工作区自动取包含该文件的工作区）；文件不在任何工作区内时回退为绝对路径
+- 绝对路径为文件系统绝对路径，路径分隔符统一为 `/`
 
 ## 快捷键
 
-默认：`Ctrl+Alt+C`（编辑器获得焦点时生效）。
+默认：`Ctrl+Alt+C`（相对路径）、`Ctrl+Alt+Shift+C`（绝对路径），编辑器获得焦点时生效。
 
 ### 修改快捷键
 
 `Ctrl+Shift+P` → 打开键盘快捷方式（`keybindings.json`），添加或覆盖：
 
 ```json
-{
-  "key": "ctrl+alt+shift+c",
-  "command": "copyCodeLink.copy",
-  "when": "editorTextFocus"
-}
+[
+  {
+    "key": "ctrl+alt+l",
+    "command": "copyCodeLink.copy",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+shift+l",
+    "command": "copyCodeLink.copyAbsolute",
+    "when": "editorTextFocus"
+  }
+]
 ```
+
+也可在命令面板 `Ctrl+Shift+P` 直接搜索 "Copy Code Link"，选择对应命令执行。
 
 ## 快速安装指南
 
@@ -45,7 +57,7 @@ npm install -g @vscode/vsce
 cd copy-code-link
 npm run compile
 vsce package
-code --install-extension copy-code-link-0.0.1.vsix
+code --install-extension copy-code-link-0.1.0.vsix
 ```
 
 注：无 repository/LICENSE 时 vsce 会输出 WARNING，可忽略，不影响生成 .vsix。
@@ -65,8 +77,20 @@ ln -sfn "$PWD" ~/.vscode/extensions/copy-code-link
 ## 使用
 
 1. 打开一个文件，选中多行（或把光标放到某一行）。
-2. 按 `Ctrl+Alt+C`。
-3. 粘贴得到 `@路径#L起-止` 格式链接。
+2. 按 `Ctrl+Alt+C` 拷贝相对路径链接，或 `Ctrl+Alt+Shift+C` 拷贝绝对路径链接。
+3. 粘贴得到 `路径#L起-止` 格式链接。
+
+状态栏会闪现提示，例如 `已复制相对路径链接 src/views/a.vue#L153-159`。
+
+## 项目结构
+
+```
+src/codeLink.ts    # 纯函数：路径选择（相对/绝对）+ 链接拼接
+src/extension.ts   # 激活、两个命令注册、选区→行号、剪贴板写入
+test/codeLink.test.ts
+```
+
+命令 ID：`copyCodeLink.copy`（相对）、`copyCodeLink.copyAbsolute`（绝对）。
 
 ## 开发
 

@@ -1,8 +1,8 @@
 {
   "name": "copy-code-link",
   "displayName": "Copy Code Link",
-  "description": "拷贝选中代码或光标行的工作区相对路径与行号链接到剪贴板",
-  "version": "0.0.1",
+  "description": "拷贝选中代码或光标行的相对/绝对路径与行号链接到剪贴板",
+  "version": "0.1.0",
   "publisher": "local",
   "engines": {
     "vscode": "^1.85.0"
@@ -14,13 +14,22 @@
     "commands": [
       {
         "command": "copyCodeLink.copy",
-        "title": "Copy Code Link: 拷贝代码链接"
+        "title": "Copy Code Link: 拷贝相对路径链接"
+      },
+      {
+        "command": "copyCodeLink.copyAbsolute",
+        "title": "Copy Code Link: 拷贝绝对路径链接"
       }
     ],
     "keybindings": [
       {
         "command": "copyCodeLink.copy",
         "key": "ctrl+alt+c",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "copyCodeLink.copyAbsolute",
+        "key": "ctrl+alt+shift+c",
         "when": "editorTextFocus"
       }
     ]
