@@ -5,6 +5,7 @@ docs/**
 src/**
 test/**
 out/test/**
+tools/**
 tsconfig.json
 package-lock.json
 
