@@ -1,0 +1,1 @@
+{"version":3,"file":"codeLink.js","sourceRoot":"","sources":["../../src/codeLink.ts"],"names":[],"mappings":";;AAIA,sCASC;AAbD;;;GAGG;AACH,SAAgB,aAAa,CAC3B,YAAoB,EACpB,SAAiB,EACjB,OAAe;IAEf,IAAI,SAAS,KAAK,OAAO,EAAE,CAAC;QAC1B,OAAO,IAAI,YAAY,KAAK,SAAS,EAAE,CAAC;IAC1C,CAAC;IACD,OAAO,IAAI,YAAY,KAAK,SAAS,IAAI,OAAO,EAAE,CAAC;AACrD,CAAC"}
